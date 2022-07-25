@@ -17,5 +17,5 @@ with open("generated.csv", "w" ,newline="") as f:
         writer.writerow(name)
 
 
-#CSV to JSON
+
 
