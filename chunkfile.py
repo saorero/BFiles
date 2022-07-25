@@ -1,6 +1,8 @@
-with open('C:\Spindles\data.json') as json_file:
+import fileinput as fi
+
+with open('file') as json_file:
     jsondata = json.load(json_file)
-data_file = open('C:\Spindles\jsonoutput.csv', 'w', newline='')
+data_file = open('file.csv', 'w', newline='')
 csv_writer = csv.writer(data_file)
 count = 0
 for data in jsondata:
