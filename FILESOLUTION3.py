@@ -14,20 +14,24 @@ print('First, enter the name of the file you want to split')
 
     # request file name
 file_name = input('filename: ')
-f = open(file_name)
+with open(f"{file_name}", "r") as f:
+    f = open(file_name)
 file_size = os.path.getsize(file_name)
 data = json.load(f)
-
-
 data_len = len(data)
+print(f'The file {file_name} has {data_len} entries')
 print('Valid JSON file found')
+    # request chunk size
+chunk_size = int(input('chunk size: '))
+
+
 
 
 
 # get numeric input
 
 mb_per_file = abs(float(input('Enter maximum file size (MB): ')))
-chunk_size = abs(int(input('Enter chunk size (number of objects): ')))
+
 if chunk_size > data_len:
     chunk_size = data_len
 if chunk_size < 1:
@@ -56,8 +60,14 @@ else:
 
 # split file
 for i in range(num_chunks):
-    with open(f'chunks/{file_name}_{i}.json', 'w') as outfile:
-        json.dump(data[i*chunk_size:(i+1)*chunk_size], outfile)
+    with open(f'chunks/{file_name}_{i+1}.json', 'w') as outfile:
+        json.dump(data[i:(i+1)*chunk_size], outfile)
+        print(f'{file_name}_{i+1}.json created')
+
+
+
+# fix unshable type :slice error
+
 
 # zip chunks
 with ZipFile('chunks.zip', 'w') as zip:
