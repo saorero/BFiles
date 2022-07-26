@@ -6,10 +6,14 @@ import json
 from urllib import request
 from zipfile import ZipFile
 
-from django import apps
-
 
 # gets file name from user
+def get_file_name():
+    file_name = input('filename: ')
+    return file_name
+
+
+""""
 @apps.route('/', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
@@ -19,11 +23,10 @@ def upload_file():
             return 'no file found'
         file = request.files['file-name']
     return file
+"""
 
+filename = get_file_name()
 
-filename = upload_file
-
-os.makedirs(os.path.dirname(filename), exist_ok=True)
 
 with open(f'{filename}') as json_file:
     jsondata = json.load(json_file)
